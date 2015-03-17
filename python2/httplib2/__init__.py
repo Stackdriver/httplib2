@@ -1073,11 +1073,7 @@ try:
         from google.appengine.api.urlfetch import fetch
         from google.appengine.api.urlfetch import InvalidURLError
     except (ImportError, AttributeError):
-        from google3.apphosting.api import apiproxy_stub_map
-        if apiproxy_stub_map.apiproxy.GetStub('urlfetch') is None:
-            raise ImportError  # Bail out; we're not actually running on App Engine.
-        from google3.apphosting.api.urlfetch import fetch
-        from google3.apphosting.api.urlfetch import InvalidURLError
+        raise
 
     def _new_fixed_fetch(validate_certificate):
         def fixed_fetch(url, payload=None, method="GET", headers={},
